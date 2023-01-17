@@ -1,107 +1,39 @@
-    //variables
-    let x = 0
-    let y = 0
-    let theta = 0
-    let inc = 0.025
-    let offset = 0 //the ammount offset from beginning of wave
-    let amplitude
-    let frequency
-    let maxAngle
+x = 0
+y = 0
+increment = 20
 
+function setup(){
+    const CELL_SIZE = 50
+    let xVariation = 0
+    let yVariation = 0
+    let widthVariation = 0
+    let heightVariation = 0
+    let sizes = [CELL_SIZE, CELL_SIZE * 2, CELL_SIZE * 3]
+    let currentWidth = random(sizes)
+    let currentHeight = random(sizes)
+    let colours = [color('#6051c0'),color('#fef007'), color('##1e1818'), color('#dbdee5'), color('#dd342f'), color('#f0fbf7')]
+    createCanvas(800, 800)
+    background(0)
+    strokeWeight(10)
+    stroke(55)
 
-function setup() {
-    createCanvas(windowWidth, windowHeight)
-
-    // amplitude = windowHeight*0.25
-    // frequency = windowWidth*0.001
-
-
-    // amplitude = windowHeight * 0.042
-    // frequency = windowWidth * 32
-
-
-    amplitude = windowHeight * 0.1
-    frequency = windowWidth * 0.8
-    maxAngle = (windowWidth/frequency) * TAU
-
-
-
-
-
-    // x = width / 1/3
-    // y = height
+    while(y < height){
+        while(x < width){
+            fill(random(colours))
+            //adds jitter
+            // rect(x+random(-xVariation, xVariation), y+random(-yVariation, yVariation), CELL_SIZE)
+            // CELL_SIZE + random(-widthVariation, widthVariation), 
+            // CELL_SIZE + random(-heightVariation, heightVariation)
+            rect(x, y, currentWidth, currentHeight)
+            x+= currentWidth
+            currentWidth = random(sizes)
+        }
+        y+= currentHeight
+        currentHeight = random(sizes)
+        x=0
+    }
 }
 
-function draw() {   
+function draw(){
 
-
-    //Animated waves
-    fill(0, 153, 0)
-    background(0)
-    noStroke()
-    let length = 5
-
-    while(theta < maxAngle + offset) {
-        // amplitude = sin(theta - offset) * (windowHeight/2)
-        // amplitude = ((theta - offset)/maxAngle) * (windowHeight/2)
-        for (i = length; i > 0; i --) {
-            y = sin(theta - (i * 0.05)) * amplitude
-            fill (255 - (255/length * i), 100, 100)
-            ellipse (x, y + height * 0.5, 12)
-        }
-        for (i = length; i > 0; i--){
-            y = cos(theta - (i * 0.05)) * amplitude
-            fill(100, 200, 255 - (255/length * i))
-            ellipse(x, y + height/2, 12)
-        }
-        theta += 0.1
-        x = ((theta - offset)/maxAngle) * windowWidth
-    }
-    offset += inc
-    theta = offset
-    //while 2
-    // while(theta < maxAngle + offset) {
-    // //creates a sine wave
-    // // sine 2
-    //     y = sin(theta) * amplitude
-    //     fill(204, 255, 255)
-    //     ellipse(x, y + height * 0.5, 25)
-    //     theta += 0.05
-    //     x = ((theta - offset)/maxAngle * windowWidth)   
-    // //sine 2
-    //     y = sin(theta) * amplitude
-    //     fill (255, 204, 153)
-    //     ellipse(x, y + height * 0.5, 25)
-    //     theta += 0.05
-    //     x = ((theta - offset)/maxAngle * windowWidth)
-
-    // //creates a cos wave
-    // // cos 1
-    //     y = cos(theta) * amplitude
-    //     ellipse(x, y + height * 0.5, 25)
-    //     theta += 0.05
-    //     x = ((theta - offset)/maxAngle * windowWidth)
-    // //cos 2
-    //     y = cos(theta) * amplitude
-    //     fill(204, 255, 255)
-    //     ellipse(x, y + height * 0.5, 25)
-    //     theta += 0.05
-    //     x = ((theta - offset)/maxAngle * windowWidth)
-    // }
-    // offset += inc
-    // theta = offset
-
-    //Random Animated balloon 
-    // background(250)
-
-    // stroke(25)
-    // fill(100)
-    // ellipse(x, y, 25, 25)
-
-    // x = x + random(-15, 15)
-    // y = y - 2.5
-
-    // if (y < 0) {
-    //     y = height
-    // }
 }
