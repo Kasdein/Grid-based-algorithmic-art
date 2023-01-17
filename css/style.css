@@ -11,5 +11,5 @@ body {
 
 canvas {
   display: block;
-  outline: 10px solid rgb(233, 184, 121);
+  /* outline: 10px solid rgb(233, 184, 121); */
 }
