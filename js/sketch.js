@@ -26,10 +26,18 @@ function setup(){
             // CELL_SIZE + random(-heightVariation, heightVariation)
             rect(x, y, currentWidth, currentHeight)
             x+= currentWidth
+            let availableWidth = width - x
             currentWidth = random(sizes)
+            while(currentWidth > availableWidth){
+                currentWidth -= CELL_SIZE
+            }
         }
         y+= currentHeight
+        let availableHeight = height - y
         currentHeight = random(sizes)
+        while(currentHeight > availableHeight){
+            currentHeight -= CELL_SIZE
+        }
         x=0
     }
 }
