@@ -37,6 +37,10 @@
 //     }
 // }
 function setup() {
+  let colours = ['#D4C5E2', '#C9D7F8', '#A7E2E3', '#80CFA9', '#4C6663', '#E3C567', '#C8963E', '#573D1C', '#D9AE61', '#D1462F', '#A30015', '#BD2D87', '#D664BE', '#DF99F0', '#B191FF']
+  let rColour1 = random(colours)
+  let rColour2 = random(colours)
+  let rColour3 = random(colours)
   createCanvas(800, 800)
   angleMode(DEGREES)
   rectMode(CENTER)
@@ -129,17 +133,17 @@ function setup() {
             // rect(x, y, cellSide)
             if (rowIndex % 2 === 1 && colIndex % 2 === 1) {
                 push()
-                fill(100)
+                fill(255)
                 rect(x, y, cellSide)
                 pop()
 
                 push()
-                fill(200)
+                fill(rColour1)
                 rect(x + 5, y + 5, 25, 25)
                 pop()
 
                 push()
-                fill(50)
+                fill(rColour2)
                 rect(x, y, 25, 25)
                 pop()
 
@@ -169,7 +173,7 @@ function setup() {
                 pop()
                 
                 push()
-                fill('rgb(170, 57, 57')
+                fill(rColour3)
                 triangle(
                     x - halfWidth,
                     y - halfWidth,
@@ -186,19 +190,19 @@ function setup() {
                 pop()
                 
                 push()
-                fill(150)
+                fill(rColour1)
                 circle(x + 5, y + 5, 5)
                 pop()
 
                 push()
                 strokeWeight(2)
-                stroke(255)
+                stroke(rColour2)
                 line(x - halfWidth, x + halfWidth, y)
                 pop()
 
                 push()
                 strokeWeight(2)
-                stroke(255)
+                stroke(rColour3)
                 line(x, y - halfWidth, y + halfWidth)
                 pop()
             }
