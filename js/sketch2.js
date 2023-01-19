@@ -37,26 +37,33 @@
 //     }
 // }
 function setup() {
-  let colours1 = ['#A4036F', '#FFBE0B', '#28262C']
-  let colours2 = ['#A4036F', '#FB5607', '#998FC7']
-  let colours3 = ['#16DB93', '#FF006E', '#D4C2FC']
-  let colours4 = ['#EFEA5A', '#8338EC', '#F9F5FF']
-  let colours5 = ['#F29E4C', '#3A86FF', '#F5E6E8']
-
-  let rColour1 = random(colours1)
-  let rColour2 = random(colours2)
-  let rColour3 = random(colours3)
-  let rColour4 = random(colours4)
-  let rColour5 = random(colours5)
-
+  let colours = ['#D4C5E2', '#C9D7F8', '#A7E2E3', '#80CFA9', '#4C6663', '#E3C567', '#C8963E', '#573D1C', '#D9AE61', '#D1462F', '#A30015', '#BD2D87', '#D664BE', '#DF99F0', '#B191FF']
+  let rColour1 = random(colours)
+  let rColour2 = random(colours)
+  let rColour3 = random(colours)
   createCanvas(800, 800)
   angleMode(DEGREES)
   rectMode(CENTER)
+  const ctx = drawingContext
   const x = width * 0.5
   const y = height * 0.5
   rotate(45)
-  translate(x * 1.4, y * 0.1)
-  // translate(x, y)
+  translate(x* 0.5, -y)
+  stroke(0)
+
+  
+  const squareVertices = []
+  let startAngle = 45
+  for (let i = 0; i < 4; i += 1) {
+    squareVertices.push({
+      x: 400 * cos(startAngle),
+      y: 400 * sin(startAngle)
+    })
+    startAngle += 360 * 0.25
+  }
+  
+  push()
+  translate(x, y)
   
   const innerRectSide = 520
   const cellCount = 7
@@ -79,80 +86,40 @@ function setup() {
             const halfWidth = cellSide * 0.5
             // rect(x, y, cellSide)
             if (rowIndex % 2 === 1 && colIndex % 2 === 1) {
-                noStroke()
-
                 push()
-                fill(rColour3)
-                triangle(
-                    x + halfWidth,
-                    y + halfWidth,
-                    x - halfWidth,
-                    y + halfWidth,
-                    x - halfWidth,
-                    y - halfWidth,                    
-                )
-                pop()
-
-
-                push()
-                fill(rColour2)
-                triangle(
-                    x - halfWidth,
-                    y - halfWidth,
-                    x + halfWidth,
-                    y - halfWidth,
-                    x + halfWidth,
-                    y + halfWidth,                    
-                )
-                pop()
-
-                push()
-                fill(rColour2)
-                rect(x + 25, y + 25, 25, 25)
-                pop()
-
-                push()
-                fill(rColour5)
-                rect(x - 25, y + 25, 25, 25)
+                fill(255)
+                rect(x, y, cellSide)
                 pop()
 
                 push()
                 fill(rColour1)
-                rect(x + 25, y - 25, 25, 25)
+                rect(x + 5, y + 5, 25, 25)
                 pop()
 
                 push()
-                fill(rColour3)
-                rect(x - 25, y - 25, 25, 25)
-                pop()
-
-                push()
-                fill(rColour4)
+                fill(rColour2)
                 rect(x, y, 25, 25)
                 pop()
 
                 push()
-                fill(rColour1)
+                fill(255)
                 rect(x, y, 2, 2)
                 pop()
             } else {
                 noStroke()
+                push()
+                triangle(
+                    x - halfWidth,
+                    y - halfWidth,
+                    x + halfWidth,
+                    y - halfWidth,
+                    x + halfWidth,
+                    y + halfWidth,
+                )
+                pop()
                 
                 push()
                 fill(rColour3)
-                triangle(
-                    x + halfWidth,
-                    y + halfWidth,
-                    x - halfWidth,
-                    y + halfWidth,
-                    x - halfWidth,
-                    y - halfWidth,                    
-                )
-                pop()
-
-
-                push()
-                fill(rColour2)
                 triangle(
                     x - halfWidth,
                     y - halfWidth,
@@ -162,35 +129,27 @@ function setup() {
                     y + halfWidth,                    
                 )
                 pop()
-
+                
                 push()
-                fill(rColour2)
-                rect(x + 25, y + 25, 25, 25)
+                fill(0)
+                circle(x, y, 30)
                 pop()
-
-                push()
-                fill(rColour5)
-                rect(x - 25, y + 25, 25, 25)
-                pop()
-
+                
                 push()
                 fill(rColour1)
-                rect(x + 25, y - 25, 25, 25)
+                circle(x + 5, y + 5, 5)
                 pop()
 
                 push()
-                fill(rColour3)
-                rect(x - 25, y - 25, 25, 25)
+                strokeWeight(2)
+                stroke(rColour2)
+                line(x - halfWidth, x + halfWidth, y)
                 pop()
 
                 push()
-                fill(rColour4)
-                rect(x, y, 25, 25)
-                pop()
-
-                push()
-                fill(rColour1)
-                rect(x, y, 2, 2)
+                strokeWeight(2)
+                stroke(rColour3)
+                line(x, y - halfWidth, y + halfWidth)
                 pop()
             }
         }
