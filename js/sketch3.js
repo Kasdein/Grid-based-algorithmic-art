@@ -33,7 +33,7 @@ function setup(){
     const cellSize = 50
     gridSize = 750 
     // noLoop()
-    frameRate(10)
+    frameRate(0.5)
 
     createCanvas(gridSize + cellSize*0.5, gridSize + cellSize*0.5)
     strokeWeight(5)
