@@ -1,5 +1,17 @@
 const rectangles = []
 hexColours = ["F09156", "605770", "BDADEA", "7D451B", "B9F18C"]
+let positive = 25
+let negative = -25
+let inc = 5
+let max = 50
+let positive1 = positive - inc
+let negative1 = negative + inc
+let positive2 = positive - (inc*2)
+let negative2 = negative + (inc*2)
+let positive3 = positive - (inc*3)
+let negative3 = negative + (inc*3)
+let positive4 = positive - (inc*4)
+let negative4 = negative + (inc*4)
 
 String.prototype.convertToRgb = function() {
     let fromHexToRgb = this.match(/.{1,2}/g)
@@ -14,46 +26,46 @@ String.prototype.convertToRgb = function() {
 function Rectangle(x, y) {
     rgbColours = [hexColours[0].convertToRgb(), hexColours[1].convertToRgb(), hexColours[2].convertToRgb(), hexColours[3].convertToRgb(), hexColours[4].convertToRgb()]
     console.log(rgbColours)
-    this. show = function() {
+    this.show = function() {
         noStroke()
         fill(random(rgbColours))
-        quad(x + 25, y, x, y + 25, x - 25, y, x, y - 25)
+        quad(x + positive, y, x, y + positive, x + negative, y, x, y + negative)
         fill(random(rgbColours))
-        quad(x + 20, y, x, y + 20, x - 20, y, x, y - 20)
+        quad(x + positive1, y, x, y + positive1, x + negative1, y, x, y + negative1)
         fill(random(rgbColours))
-        quad(x + 15, y, x, y + 15, x - 15, y, x, y - 15)
+        quad(x + positive2, y, x, y + positive2, x + negative2, y, x, y + negative2)
         fill(random(rgbColours))
-        quad(x + 10, y, x, y + 10, x - 10, y, x, y - 10)
+        quad(x + positive3, y, x, y + positive3, x + negative3, y, x, y + negative3)
         fill(random(rgbColours))
-        quad(x + 5, y, x, y + 5, x - 5, y, x, y - 5)
+        quad(x + positive4, y, x, y + positive4, x + negative4, y, x, y + negative4)
     }
 }
 
 function setup(){
-    const cellSize = 50
+    const cellSize = 25
     gridSize = 750 
     // noLoop()
-    frameRate(0.5)
+    frameRate(1)
 
-    createCanvas(gridSize + cellSize*0.5, gridSize + cellSize*0.5)
+    createCanvas(gridSize + cellSize, gridSize + cellSize)
     strokeWeight(5)
     stroke(0)
 
-    for(let a = 0; a < gridSize -5; a += 50){
-        for(let b = 0; b < gridSize -5; b +=50){
+    for(let a = 0; a < gridSize - inc; a += max){
+        for(let b = 0; b < gridSize - inc; b += max){
             rectangles.push(new Rectangle(a, b))
         }
     }
 }
 
 function draw(){
-    background(50)
-    translate(25, 25)
+    background(0)
+    translate(positive, positive)
     for (let b = 0; b < rectangles.length; b++){
         rectangles[b].show()
     }
     push()
-    translate(25, 25)
+    translate(positive, positive)
     for (let b = 0; b < rectangles.length; b++){
         rectangles[b].show()
     }
