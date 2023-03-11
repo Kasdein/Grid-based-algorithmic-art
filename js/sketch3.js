@@ -25,7 +25,6 @@ String.prototype.convertToRgb = function() {
 
 function Rectangle(x, y) {
     rgbColours = [hexColours[0].convertToRgb(), hexColours[1].convertToRgb(), hexColours[2].convertToRgb(), hexColours[3].convertToRgb(), hexColours[4].convertToRgb()]
-    console.log(rgbColours)
     this.show = function() {
         noStroke()
         fill(random(rgbColours))
