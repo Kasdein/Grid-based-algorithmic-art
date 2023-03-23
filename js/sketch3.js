@@ -4,14 +4,8 @@ let positive = 25
 let negative = -25
 let inc = 5
 let max = 50
-let positive1 = positive - inc
-let negative1 = negative + inc
-let positive2 = positive - (inc*2)
-let negative2 = negative + (inc*2)
-let positive3 = positive - (inc*3)
-let negative3 = negative + (inc*3)
-let positive4 = positive - (inc*4)
-let negative4 = negative + (inc*4)
+let positiveList = []
+let negativeList = []
 
 String.prototype.convertToRgb = function() {
     let fromHexToRgb = this.match(/.{1,2}/g)
@@ -26,24 +20,23 @@ String.prototype.convertToRgb = function() {
 function Rectangle(x, y) {
     rgbColours = [hexColours[0].convertToRgb(), hexColours[1].convertToRgb(), hexColours[2].convertToRgb(), hexColours[3].convertToRgb(), hexColours[4].convertToRgb()]
     this.show = function() {
+
         noStroke()
+        for(i = 0; i <= 4; i++){
         fill(random(rgbColours))
-        quad(x + positive, y, x, y + positive, x + negative, y, x, y + negative)
-        fill(random(rgbColours))
-        quad(x + positive1, y, x, y + positive1, x + negative1, y, x, y + negative1)
-        fill(random(rgbColours))
-        quad(x + positive2, y, x, y + positive2, x + negative2, y, x, y + negative2)
-        fill(random(rgbColours))
-        quad(x + positive3, y, x, y + positive3, x + negative3, y, x, y + negative3)
-        fill(random(rgbColours))
-        quad(x + positive4, y, x, y + positive4, x + negative4, y, x, y + negative4)
+        quad(x + positiveList[0 + i], y, x, y + positiveList[0 + i], x + negativeList[0 + i], y, x, y + negativeList[0 + i])
+        }
     }
 }
 
 function setup(){
+    for(i = 0; i <= 4; i++){
+        positiveList.push(positive - (inc * i))
+        negativeList.push(negative + (inc * i))
+    }
     const cellSize = 25
     gridSize = 750 
-    // noLoop()
+    noLoop()
     frameRate(1)
 
     createCanvas(gridSize + cellSize, gridSize + cellSize)
