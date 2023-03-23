@@ -26,11 +26,6 @@ function Rectangle(x, y) {
             fill(random(rgbColours))
             quad(x + positiveList[1 + i], y, x, y + positiveList[1 + i], x + negativeList[1 + i], y, x, y + negativeList[1 + i])
         }
-
-        // for (i = 0; i <= 4; i++) {
-        //     fill(random(rgbColours))
-        //     quad(x + positiveList[0 + i], y, x, y + positiveList[0 + i], x + negativeList[0 + i], y, x, y + negativeList[0 + i])
-        // }
     }
 }
 
